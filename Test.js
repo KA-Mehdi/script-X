@@ -40,9 +40,9 @@
 
 // example();
 
-
 const { Builder, By, Key, until } = require("selenium-webdriver");
 
+require('dotenv').config()
 async function example() {
     let driver = await new Builder().forBrowser("chrome").build();
 
@@ -56,18 +56,18 @@ async function example() {
 
         // Wait for the email input field to be ready, fill it, and click next
         let emailElement = await driver.wait(until.elementLocated(By.xpath('//input[@type="text"]')), 10000);
-        await emailElement.sendKeys("kamilmehdi449@gmail.com", Key.RETURN);
+        await emailElement.sendKeys(process.env.Email, Key.RETURN);
 
         // Add sleep to ensure the next field has time to load
         await driver.sleep(2000);
 
         // Wait for the name input field 
         let nameElement = await driver.wait(until.elementIsVisible(driver.findElement(By.xpath('//input[contains(@class, "r-30o5oe")]'))),10000);
-        await nameElement.sendKeys("pffffffff00", Key.RETURN);
+        await nameElement.sendKeys(process.env.NAME, Key.RETURN);
 
         // Wait for the password input field
         let passwordElement = await driver.wait(until.elementLocated(By.xpath('//input[contains(@name, "password")]')), 10000);
-        await passwordElement.sendKeys("HHHTwitter@@321", Key.RETURN);
+        await passwordElement.sendKeys(process.env.PASSWORD, Key.RETURN);
 
         // Wait for the search input and search for "1337 Coding School"
         let searchElement = await driver.wait(until.elementLocated(By.xpath('//input[@data-testid="SearchBox_Search_Input"]')), 10000);
